@@ -1,0 +1,6 @@
+export { default as Header } from './header'
+export { default as Product } from './product'
+export { default as Rating } from './rating'
+export { default as Subtotal } from './subtotal'
+export { default as Form } from './form'
+export { default as Footer } from './footer'

@@ -1,0 +1,7 @@
+export { default as Home } from './home'
+export { default as Checkout } from './checkout'
+export { default as Payment } from './payment'
+export { default as Login } from './login'
+export { default as Signup } from './signup'
+export { default as ProductPage } from './productPage'
+export { default as Browse } from './browse'

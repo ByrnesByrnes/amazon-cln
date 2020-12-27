@@ -1,0 +1,7 @@
+export const HOME = '/'
+export const LOGIN = '/login'
+export const SIGN_UP = '/signup'
+export const CHECKOUT = '/checkout'
+export const PAYMENT = '/payment'
+export const PRODUCT = '/product'
+export const BROWSE = '/browse'
