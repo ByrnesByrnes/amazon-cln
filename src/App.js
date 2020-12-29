@@ -4,7 +4,8 @@ import * as ROUTES from './constants/routes'
 import { HeaderContainer } from './container/header'
 import { StateContext, StateContextConsumer } from './context/state'
 import { auth } from './firebase/config'
-
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements }from '@stripe/react-stripe-js'
 import {
   Home,
   Checkout,
@@ -14,6 +15,8 @@ import {
   Browse,
   ProductPage,
 } from './pages'
+
+const promise = loadStripe('pk_test_cD4OWMH3AI2yCM5yrcBQB5fV')
 
 function App() {
   const [state,dispatch] = StateContext()
@@ -59,7 +62,9 @@ function App() {
             <HeaderContainer />
             <StateContextConsumer>
               {([{ cart }, dispatch]) => (
-                <Payment cart={cart} dispatch={dispatch} />
+                <Elements stripe={promise}>
+                  <Payment cart={cart} dispatch={dispatch} />
+                </Elements>
               )}
             </StateContextConsumer>
           </Route>

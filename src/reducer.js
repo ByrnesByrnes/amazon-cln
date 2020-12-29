@@ -6,6 +6,8 @@ export const state = {
 export const getCartSubtotal = (cart) => 
   cart.reduce((a, item) => item.price + a ,0)
 
+//emulating Tax
+export const getCartTotal = (subTotal) => (subTotal * 1.13).toFixed(2)
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -21,6 +23,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: newCart
+      }
+
+    case 'EMPTY_CART':
+      return state = {
+        ...state,
+        cart: action.payload
       }
     case 'SET_USER':
       return {

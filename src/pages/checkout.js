@@ -31,7 +31,7 @@ export default function Checkout() {
               </>
             )}
           </StateContextConsumer>
-          <Subtotal.Calc style={{ "textAlign": "right" }} />
+          <Subtotal.Calc style={{ "textAlign": "right" }}>SubTotal</Subtotal.Calc>
         </div>
         <div className="checkout__right">
           <SubtotalContainer />

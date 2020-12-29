@@ -6,7 +6,7 @@ import { Subtotal } from '../components'
 export function SubtotalContainer() {
   return (
     <Subtotal>
-      <Subtotal.Calc />
+      <Subtotal.Calc>SubTotal</Subtotal.Calc>
       <Subtotal.Gift>This order contains a gift</Subtotal.Gift>
       <Link to={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
         <Subtotal.Button >Proceed to Checkout</Subtotal.Button>

@@ -23,11 +23,13 @@ export function ProductHome({product}) {
 
   return (
     <Product>
-    <Product.Link to={`${ROUTES.PRODUCT}/${id}`}>
-        <Product.Title>{title}</Product.Title>
-    </Product.Link>
-        <Product.Price>{price}</Product.Price>
-        <Rating rating={rating}/>
+    <Product.Info>
+      <Product.Link to={`${ROUTES.PRODUCT}/${id}`}>
+          <Product.Title>{title}</Product.Title>
+      </Product.Link>
+          <Product.Price>{price}</Product.Price>
+          <Rating rating={rating}/>
+    </Product.Info>
       <Product.Group>
         <Product.Image src={image} alt={title} />
         <Product.Button onClick={addToCart}>Add to Cart</Product.Button>

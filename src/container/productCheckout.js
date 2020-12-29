@@ -6,12 +6,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 export function ProductCheckout({ product }) {
   const { id, title, description, price, available } = product
-  console.log(available)
+ 
   return (
     <>
       <Product className="checkout__product">
         <Product.Group className="checkout__info">
-          <Product.Group>
+          <Product.Group className="checkout__image">
             <Product.Image src="/imgs/pexels-luizmedeirosph.jpg" />
           </Product.Group>
 
