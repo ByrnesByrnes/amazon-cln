@@ -69,13 +69,6 @@ export const GlobalStyle = createGlobalStyle
       background-color: #fff;
       z-index: 1;
     }
-
-    &__image {
-      width:100%;
-      z-index: -1;
-      margin-bottom: -150px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1),rgba(0,0,0,0));
-    }
   }
 
   .row {

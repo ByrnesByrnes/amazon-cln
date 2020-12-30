@@ -5,20 +5,21 @@ import { Link } from 'react-router-dom'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { StateContextConsumer } from '../context/state'
-import {auth} from '../firebase/config'
+import { auth } from '../firebase/config'
 
 export function HeaderContainer() {
   return (
-    <Header>
-      <Link to={ROUTES.HOME}>
-        <Header.Logo src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon logo" />
-      </Link>
-      <Header.Search></Header.Search>
-      <StateContextConsumer>
-        {([{ cart, user }]) => (
+    <StateContextConsumer>
+      {([{ cart, user }]) => (
+        <>
+          <Header>
+            <Link to={ROUTES.HOME}>
+              <Header.Logo src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon logo" />
+            </Link>
+            <Header.Search></Header.Search>
             <Header.Nav>
-              <Header.NavLink 
-                to={!user ? ROUTES.LOGIN : ''} 
+              <Header.NavLink
+                to={!user ? ROUTES.LOGIN : ''}
                 onClick={() => user && auth.signOut()}
               >
                 <Header.NavOption>Hello, {user ? user.displayName : "Guest"}</Header.NavOption>
@@ -39,8 +40,9 @@ export function HeaderContainer() {
                 <Header.NavOption>{cart.length}</Header.NavOption>
               </Header.NavLink>
             </Header.Nav>
-        )}
-      </StateContextConsumer>
-    </Header>
+          </Header>
+        </>
+      )}
+    </StateContextConsumer>
   )
 }
