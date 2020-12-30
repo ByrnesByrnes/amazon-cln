@@ -13,7 +13,7 @@ export default function ProductPage() {
   if (!product) return <div>Product not found</div>
 
   return (
-    <div className="productPage__container">
+    <div key={id} className="productPage__container">
       <img className="productPage__advert" src="/imgs/amazon-advert.png" alt="amazon-advert" />
       <div className="productPage">
         <div className="productPage__left">
@@ -47,8 +47,8 @@ export default function ProductPage() {
               <table className="productPage__specifications">
                 {product.specifications.map(specs => (
                   <tbody>
-                    {Object.entries(specs).map(([key, value]) => (
-                      <tr className="productPage__tr">
+                    {Object.entries(specs).map(([key, value], i) => (
+                      <tr key={i} className="productPage__tr">
                         <td className="productPage__td">{key}</td>
                         <td>{value}</td>
                       </tr>
@@ -61,8 +61,8 @@ export default function ProductPage() {
             <hr />
             <h1 className="productPage__about">About this item</h1>
             <ul>
-              {product.about && product.about.map(item => (
-                <Product.ListItem>{item}</Product.ListItem>
+              {product.about && product.about.map((item, i) => (
+                <Product.ListItem key={i}>{item}</Product.ListItem>
               ))}
             </ul>
           </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
-import { StateContext } from '../context/state'
 
 import { 
   Product,
@@ -9,30 +8,19 @@ import {
 } from '../components'
 
 export function ProductHome({product}) {
-  const [state, dispatch] = StateContext()
-  const {id, title, price, rating, image,} = product
-
-  const addToCart = (event) => {
-    event.preventDefault()
-
-    dispatch({
-      type: 'ADD_TO_CART',
-      payload: product
-    })
-  }
 
   return (
     <Product>
     <Product.Info>
-      <Product.Link to={`${ROUTES.PRODUCT}/${id}`}>
-          <Product.Title>{title}</Product.Title>
+      <Product.Link to={`${ROUTES.PRODUCT}/${product.id}`}>
+          <Product.Title>{product.title}</Product.Title>
       </Product.Link>
-          <Product.Price>{price}</Product.Price>
-          <Rating rating={rating}/>
+          <Product.Price>{product.price}</Product.Price>
+          <Rating rating={product.rating}/>
     </Product.Info>
       <Product.Group>
-        <Product.Image src={image} alt={title} />
-        <Product.Button onClick={addToCart}>Add to Cart</Product.Button>
+        <Product.Image src={product.image} alt={product.title} />
+        <Product.AddCart product={product}>Add to Cart</Product.AddCart>
       </Product.Group>
     </Product>
   )

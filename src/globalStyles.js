@@ -2,11 +2,14 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle
 `
+  * {
+    box-sizing: border-box;
+  }
+  
   html,
   body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     color: #111;
     // font-size 14px;
     line-height: 20px;
@@ -103,9 +106,13 @@ export const GlobalStyle = createGlobalStyle
       justify-content: space-between;
       align-items: flex-end;
     }
+    &__image {
+      width: 200px;
+    }
 
     &__info {
       display: flex;
+      justify-content: flex-start;
     }
 
     &__description {
@@ -113,6 +120,7 @@ export const GlobalStyle = createGlobalStyle
       flex-direction: column;
       justify-content: space-between;
       text-align: left;
+      width:100%;
     }
 
     &__action {
@@ -126,6 +134,7 @@ export const GlobalStyle = createGlobalStyle
       flex-direction: row;
       justify-content: space-between;
       height: fit-content;
+      min-width: 400px;
       width: 100%;
     }
 
@@ -134,7 +143,7 @@ export const GlobalStyle = createGlobalStyle
       margin: 10px;
       background: #fff;
       min-height: 100px;
-      min-width: 360px;
+      min-width: 500px;
       width: 100%;
     }
 

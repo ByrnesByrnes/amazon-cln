@@ -24,23 +24,24 @@ export const Logo = styled.img
 export const Search = styled.div
 `
  display: flex;
- margin-right: 5px;
  flex: 1;
  align-items: center;
  border-radius: 24px;
 
  & input {
-  height: 12px;
+  font-size: 16px;
   padding: 10px;
   border: none;
+  height: 40px;
   width: 100%;
   border-radius: 4px 0 0 4px;
   outline: none; !//soemthing here
  }
 
  & svg {
-   padding: 5px;
-   height: 22px;
+   padding: 8px;
+   height: 40px;
+   width: 40px;
    background-color: #febd69;
    cursor: pointer;
    border-radius:0 4px 4px 0;

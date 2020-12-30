@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import { ProductCheckout } from '../container/productCheckout'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import {instance as axios} from '../axios/axios'
-import { Subtotal } from '../components'
+import { instance as axios } from '../axios/axios'
+import { Subtotal, Form } from '../components'
 import { getCartSubtotal, getCartTotal } from '../reducer'
+import { db } from '../firebase/config'
 
-
-export default function Payment({ cart, dispatch }) {
+export default function Payment({ cart, dispatch, user }) {
   const stripe = useStripe()
   const elements = useElements()
   const history = useHistory()
@@ -18,8 +18,7 @@ export default function Payment({ cart, dispatch }) {
   const [succeeded, setSucceeded] = useState(false)
   const [clientSecret, setClientSecret] = useState('')
   const [error, setError] = useState('')
- 
-
+  console.log(user.uid, "unknown")
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
@@ -30,7 +29,7 @@ export default function Payment({ cart, dispatch }) {
     }
 
     getClientSecret()
-  },[cart])
+  }, [cart])
   console.log('client Secret', clientSecret)
 
   const handleSubmit = async event => {
@@ -41,8 +40,20 @@ export default function Payment({ cart, dispatch }) {
       payment_method: {
         card: elements.getElement(CardElement)
       }
-    }).then(({ paymentIntent}) => {
+    }).then(({ paymentIntent }) => {
       // paymentIntent = payment confirmation
+      db
+        .collection('users')
+        .doc(user.uid)
+        .collection('orders')
+        .doc(paymentIntent.id)
+        .set({
+          cart: cart,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created
+        })
+
+
       setSucceeded(true)
       setError('')
       setProcessing(false)
@@ -51,7 +62,7 @@ export default function Payment({ cart, dispatch }) {
         type: 'EMPTY_CART',
         payload: []
       })
-      
+
       history.replace(ROUTES.ORDERS)
     })
     // const payload = await stripe
@@ -84,7 +95,7 @@ export default function Payment({ cart, dispatch }) {
             <h3>Review items</h3>
           </div>
           <div className="payment__right">
-           
+
             {cart.map((product, i) => (
               <ProductCheckout key={i} product={product} />
             ))}
@@ -98,15 +109,20 @@ export default function Payment({ cart, dispatch }) {
             <form onSubmit={handleSubmit}>
               <CardElement onChange={handleChange} />
               <div className="payment__priceContainer">
-              <Subtotal.Calc>Subtotal</Subtotal.Calc>
-              Order Total: {getCartTotal(getCartSubtotal(cart))}
-                <button
-                  disabled={processing || disabled || succeeded}>
+                <div style={{textAlign: "right"}}>
+                <Subtotal.Calc>Subtotal</Subtotal.Calc>
+                Order Total: {getCartTotal(getCartSubtotal(cart))}
+                <br/>
+                <Form.Button
+                  style={{width: "200px"}}
+                  disabled={processing || disabled || succeeded}
+                >
                   <span>{
                     processing ? <p>Processing</p> : "Buy Now"
                   }</span>
+                </Form.Button>
+                </div>
 
-                </button>
               </div>
               {error && <div>{error}</div>}
             </form>

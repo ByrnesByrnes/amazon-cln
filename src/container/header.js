@@ -21,10 +21,10 @@ export function HeaderContainer() {
                 to={!user ? ROUTES.LOGIN : ''} 
                 onClick={() => user && auth.signOut()}
               >
-                <Header.NavOption>Hello, {user ? user : "Guest"}</Header.NavOption>
+                <Header.NavOption>Hello, {user ? user.displayName : "Guest"}</Header.NavOption>
                 <Header.NavOption>Sign, {user ? 'Out' : 'In'}</Header.NavOption>
               </Header.NavLink>
-              <Header.NavLink to={ROUTES.HOME}>
+              <Header.NavLink to={ROUTES.ORDERS}>
                 <Header.NavOption>Returns</Header.NavOption>
                 <Header.NavOption>& Orders</Header.NavOption>
               </Header.NavLink>

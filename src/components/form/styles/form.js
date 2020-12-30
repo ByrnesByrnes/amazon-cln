@@ -67,7 +67,7 @@ export const Input = styled.input
   width: 100%;
   box-shadow: 0 1px 0 rgba(255,255,255,.5),0 1px 0 rgba(0,0,0,.07);
   transition: .1s ease-in-out;
-
+  outline: none;
   &.error {
     border-color: #d00;
     box-shadow: 0 0 0 3px rgba(221, 0, 0, 0.1) inset;
@@ -126,6 +126,7 @@ export const Button = styled.button
   color: #111;
   box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
   transition: .1s ease-in-out;
+  outline: none;
 
   &:disabled {
     filter: contrast(.6);

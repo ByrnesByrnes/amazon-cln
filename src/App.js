@@ -14,6 +14,7 @@ import {
   Signup,
   Browse,
   ProductPage,
+  Orders
 } from './pages'
 
 const promise = loadStripe('pk_test_cD4OWMH3AI2yCM5yrcBQB5fV')
@@ -27,7 +28,7 @@ function App() {
       if(authUser) {
         dispatch({
           type: 'SET_USER',
-          payload: authUser.displayName
+          payload: authUser
         })
       } else {
         dispatch({
@@ -50,6 +51,10 @@ function App() {
           <Route path={ROUTES.LOGIN}>
             <Login />
           </Route>
+          <Route path={ROUTES.ORDERS}>
+            <HeaderContainer />
+            <Orders />
+          </Route>
           <Route path={`${ROUTES.PRODUCT}/:id`}>
             <HeaderContainer />
             <ProductPage />
@@ -61,9 +66,9 @@ function App() {
           <Route path={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
             <HeaderContainer />
             <StateContextConsumer>
-              {([{ cart }, dispatch]) => (
+              {([{user, cart }, dispatch]) => (
                 <Elements stripe={promise}>
-                  <Payment cart={cart} dispatch={dispatch} />
+                  <Payment cart={cart} dispatch={dispatch} user={user} />
                 </Elements>
               )}
             </StateContextConsumer>

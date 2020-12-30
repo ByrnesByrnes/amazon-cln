@@ -18,14 +18,14 @@ Subtotal.Text = function SubtotalText({children, ...restProps}) {
   return <Text {...restProps}>{children}</Text>
 }
 
-Subtotal.Calc = function SubtotalCalc({children, ...restProps}) {
+Subtotal.Calc = function SubtotalCalc({children ,...restProps}) {
   return (
       <StateContextConsumer>
         {([{ cart }]) => (
-          <Calc {...restProps}>{children}
+          <Calc {...restProps}>
             <CurrencyFormat 
               renderText={value => (
-                <p>Subtotal ({cart.length} item{cart.length !== 1 && "s"}):
+                <p>{children} ({cart.length} item{cart.length !== 1 && "s"}):
                 {console.log(getCartSubtotal(cart))}
                   <strong>CDN$ {value}</strong>
                 </p>

@@ -5,8 +5,8 @@ export const Container = styled.div
   display: flex;
   flex-direction: column;
   jusify-content: space-between;
-  width: 250px;
-  height: 100px;
+  width: 280px;
+
   padding: 20px;
   margin: 10px 10px 0 0;
   background-color: #fff;

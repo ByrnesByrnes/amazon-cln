@@ -17,6 +17,12 @@ export const Group = styled.div
   margin: 5px;
 `
 
+export const Info = styled.div 
+`
+  display: flex;
+  flex-direction: column;
+`
+
 export const Title = styled.h1
 `
   font-size: 17px;
@@ -57,6 +63,7 @@ export const Delete = styled.button
   border: none;
   background: transparent;
   cursor: pointer;
+  outline: none;
 
   &:hover {
     text-decoration: underline;
@@ -83,6 +90,9 @@ export const Link = styled(RouterLink)
 
 export const Button = styled.button
 `
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
   cursor: pointer;
   background: rgb(238,209,135);
@@ -93,6 +103,7 @@ export const Button = styled.button
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
   box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+  outline: none;
 
   &:hover {
     filter: contrast(.9);
