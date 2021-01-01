@@ -6,9 +6,19 @@ export const Container = styled.section
   justify-content: flex-start;
   margin: auto;
   position: relative;
-  width: 100%;
   overflow: hidden;
-  margin-bottom: -360px;
+  max-width: 1500px;
+  margin-bottom: -150px;
+
+  @media (min-width: 850px) {
+    margin-bottom: -200px;
+  }
+  @media (min-width: 1000px) {
+    margin-bottom: -250px;
+  }
+  @media (min-width: 1400px) {
+    margin-bottom: -350px;
+  }
 
 `
 export const Arrow = styled.div 
@@ -49,6 +59,7 @@ export const Arrow = styled.div
 export const Slide = styled.img
 `
   width: 100%;
+  object-fit: contain;
   transition: .2s;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%,rgba(0,0,0,0));
 `
