@@ -5,17 +5,19 @@ import { StateContext } from '../../context/state'
 import {
   Container,
   Group,
+  Browse,
   Info,
   Title,
+  TitleSmall,
   Text,
-  SmallText,
+  TextSmall,
   Image,
   Button,
   Price,
   Delete,
   ListItem,
   Link,
-  AddCart 
+  Card 
 } from './styles/product'
 
 
@@ -35,12 +37,15 @@ Product.Info = function ProductInfo({children,...restProps}) {
 Product.Title = function ProductTitle({children, ...restProps}) { 
   return <Title {...restProps}>{children}</Title>
 }
+Product.TitleSmall = function ProductTitleSmall({children, ...restProps}) { 
+  return <TitleSmall {...restProps}>{children}</TitleSmall>
+}
 
 Product.Text = function ProductText({children,...restProps}) {
   return <Text {...restProps}>{children}</Text>
 }
-Product.SmallText = function ProductSmallText({children,...restProps}) {
-  return <SmallText {...restProps}>{children}</SmallText>
+Product.TextSmall = function ProductTextSmall({children,...restProps}) {
+  return <TextSmall {...restProps}>{children}</TextSmall>
 }
 
 Product.Image = function ProductImage({...restProps}) {
@@ -79,12 +84,10 @@ Product.Delete = function ProductDelete({ children, id,...restProps}) {
   return <Delete onClick={removeFromCart} {...restProps}>{children}</Delete>
 }
 
-Product.Price = function ProductPrice({children,...restProps}) {
-  return (
-    <Price {...restProps}>
-      <strong>${children}</strong>
-    </Price>
-  )
+Product.Price = function ProductPrice({children, price, ...restProps}) {
+  const getDecimal = price?.toString().split(".")[1]
+
+  return <Price getDecimal={getDecimal} {...restProps}>{children}</Price>
 }
 
 Product.ListItem = function ProductListItem({children,...restProps}) {
@@ -93,4 +96,12 @@ Product.ListItem = function ProductListItem({children,...restProps}) {
 
 Product.Link = function ProductLink({children,...restProps}) {
   return <Link {...restProps}>{children}</Link>
+}
+
+Product.Card = function ProductCard({children, ...restProps}) {
+  return <Card {...restProps}>{children}</Card>
+}
+
+Product.Browse = function ProductBrowse({children, ...restProps}) {
+  return <Browse {...restProps}>{children}</Browse>
 }

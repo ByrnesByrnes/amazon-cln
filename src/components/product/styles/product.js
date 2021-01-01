@@ -7,7 +7,7 @@ export const Container = styled.div
  flex-direction: column;
  justify-content: space-between;
  height: 100%;
-
+ 
  & > :last-child {
    text-align: center;
  }
@@ -15,12 +15,30 @@ export const Container = styled.div
 export const Group = styled.div
 `
   margin: 5px;
+  min-width: 70px;
+`
+
+export const Browse = styled.div 
+`
+  display: grid;
+  padding: 20px;
+  grid-template-columns:  1fr;
+  grid-column-gap: 20px;
+
+  @media(min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media(min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
 `
 
 export const Info = styled.div 
 `
   display: flex;
   flex-direction: column;
+  
 `
 
 export const Title = styled.h1
@@ -28,28 +46,73 @@ export const Title = styled.h1
   font-size: 17px;
   min-width: 150px;
 `
+export const TitleSmall = styled.h2
+`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+`
 
 export const Text = styled.p
 `
-  
+  font-size: 14px;
+  &.secondary {
+   color: #565959 !important;
+  }
+`
+export const Card = styled.div
+`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+  max-width: 300px;
+  min-height: 400px;
+  border-bottom: 2px solid #ddd;
+  margin: 15px 0;
 `
 
-export const SmallText = styled.p
+export const TextSmall = styled.p
 `
-  color: #007600 !important;
-  font-size: 12px;
+font-size: 12px;
+
+  &.stocked {
+    color: #007600 !important;
+  }
 `
 
 export const Image = styled.img
 `
-  max-height: 200px;
+  height:200px;
   width: 100%;
   object-fit: contain;
 `
 
-export const Price = styled.p
+export const Price = styled.div
 `
   margin-top: 5px;
+  font-weight: 500;
+  
+  &.browse {
+    display: flex;
+    height: fit-content;
+    align-items: flex-start;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0;
+    &:before {
+      margin-right: 1px;
+      transform: translateY(-2px);
+      content: "CND$";
+      font-size:12px;
+    }
+
+    &:after {
+      transform: translateY(-2px);
+      content: "${({getDecimal}) => getDecimal}";
+      font-size:12px;
+    }
+  }
 `
 
 export const ListItem = styled.li 
@@ -77,14 +140,24 @@ export const Link = styled(RouterLink)
   font-weight: 700;
   line-height: 24px;
 
+  &:visited {
+    color: #007185;
+  }
+
   &:hover {
     color: #C7511F;
     text-decoration: underline;
   }
 
-  &:visited {
-    color: #007185;
+  &.browse {
+    color: #0F1111;
+
+    :hover {
+      color: #C7511F;
+      text-decoration: none;
+    }
   }
+  
 `
 
 
