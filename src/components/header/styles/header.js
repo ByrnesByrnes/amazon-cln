@@ -21,11 +21,11 @@ export const Logo = styled.img
   margin-top: 18px;
 `
 
-export const Search = styled.div
+export const Search = styled.form
 `
  display: flex;
  flex: 1;
- align-items: center;
+
  border-radius: 24px;
 
  & input {
@@ -39,6 +39,7 @@ export const Search = styled.div
  }
 
  & svg {
+   color: #111;
    padding: 8px;
    height: 40px;
    width: 40px;

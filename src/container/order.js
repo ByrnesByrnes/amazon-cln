@@ -4,10 +4,10 @@ import * as ROUTES from '../constants/routes'
 import RepeatIcon from '@material-ui/icons/Repeat';
 import { Order, Product } from '../components'
 
-export function OrderContainer({ order, key }) {
+export function OrderContainer({ order }) {
 
   return (
-    <Order.Frame>
+    <Order.Frame key={order.data.created}>
       <Order.Info>
         <Order.Info>
           <Order.Label>

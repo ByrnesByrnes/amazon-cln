@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import  SearchIcon from '@material-ui/icons/Search'
-
+import { Link, useHistory } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
 
 import {
   Container,
@@ -22,10 +23,24 @@ Header.Logo = function HeaderLogo({children,...restProps}) {
 }
 
 Header.Search = function HeaderSearch({...restProps}) {
+  const [searchTerm, setSearchTerm] = useState('')
+  const history = useHistory()
+
+  const handleSubmit= event => {
+    event.preventDefault()
+    history.push(`${ROUTES.BROWSE}${'?search=' + searchTerm}`)
+  }
+
   return (
-    <Search {...restProps}>
-      <input type="text"/>
-      <SearchIcon />
+    <Search {...restProps} onSubmit={handleSubmit}>
+      <input 
+        type="text" 
+        onChange={event => setSearchTerm(event.target.value)}
+      /> 
+      <Link to={`${ROUTES.BROWSE}${'?search=' + searchTerm}`}>
+        <SearchIcon />
+      </Link>
+    
     </Search>
   )
 }
