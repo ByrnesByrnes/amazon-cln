@@ -50,34 +50,23 @@ export const GlobalStyle = createGlobalStyle
     margin-bottom: 14px;
   }
 
-  .home {
-    display:flex;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1500px;
-
-    & .item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 10px;
-      padding: 20px;
-      width: 100%;
-      max-height: 400px;
-      min-width: 100px;
-      background-color: #fff;
-      z-index: 1;
+  .button {
+    cursor: pointer;
+    background: rgb(238,209,135);
+    background: linear-gradient(180deg, rgba(238,209,135,1) 43%, rgba(240,193,75,1) 92%); 
+    border-radius: 2px;
+    height: 30px;
+    border: 1px solid;
+    border-color: #a88734 #9c7e31 #846a29;
+    margin: 10px auto 0;
+    color: #111;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+    width: 100%;
+    &:hover {
+      filter: contrast(.9);
     }
-  }
 
-  .row {
-    display: flex;
-    z-index: 1;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
+  /* ===== CHECKOUT PAGE ====*/
   .checkout {
     display: flex;
     max-width: 1500px;
@@ -85,7 +74,6 @@ export const GlobalStyle = createGlobalStyle
     margin: 10px auto;
     justify-content: space-between;
    
-    
     &__ad {
       display: block;
       margin: 0 auto;
