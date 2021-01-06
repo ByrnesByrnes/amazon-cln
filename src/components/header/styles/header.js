@@ -38,19 +38,25 @@ export const Search = styled.form
   outline: none; !//soemthing here
  }
 
- & svg {
-   color: #111;
-   padding: 8px;
-   height: 40px;
-   width: 40px;
-   background-color: #febd69;
-   cursor: pointer;
-   border-radius:0 4px 4px 0;
+ 
+`
 
-   &:hover {
-     filter: contrast(.9);
-   }
- }
+export const Button = styled.button 
+`
+  padding: 0;
+  margin: 0;
+  color: #111;
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  background-color: #febd69;
+  cursor: pointer;
+  border-radius:0 4px 4px 0;
+  border: none;
+  
+  &:hover {
+    filter: contrast(.9);
+  }
 `
 
 export const Nav = styled.div

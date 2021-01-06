@@ -65,6 +65,7 @@ export const GlobalStyle = createGlobalStyle
     &:hover {
       filter: contrast(.9);
     }
+  }
 
   /* ===== CHECKOUT PAGE ====*/
   .checkout {

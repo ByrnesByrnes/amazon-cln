@@ -2,11 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.section 
 `
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1500px;
+  background: #fff;
 `
 
 export const Row = styled.div 
@@ -23,6 +19,10 @@ export const Group = styled.div
 `
 
 export const Column = styled.div 
-`
-
+` 
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 `

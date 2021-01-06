@@ -9,7 +9,7 @@ export const features = [
   },
   {
     id: 2,
-    link: `${ROUTES.BROWSE}?search=`,
+    link: `${ROUTES.BROWSE}`,
     img: 'https://images-na.ssl-images-amazon.com/images/G/15/Events/2020/NYNY/NYNY_dk_card_1._SY304_CB413500191_.jpg',
     title: 'New Year New You',
     text: 'Shop now'

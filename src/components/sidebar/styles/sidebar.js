@@ -3,12 +3,11 @@ import { Link as RouterLink } from 'react-router-dom'
 
 export const Container = styled.div
   `
-  margin: 15px,
-  width: 250px,
-  height: 100vh,
-  backgroundColor: #fff,
-  borderRight: 1px solid #ddd,
-  lineHeight: 30px,
+  margin: 15px;
+  width: 250px;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  line-height: 30px;
 `
 
 export const Option = styled.div

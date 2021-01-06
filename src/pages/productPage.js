@@ -10,8 +10,8 @@ export default function ProductPage() {
   const { id } = useParams()
 
   const product = products.find(item => item.id === parseInt(id) && item)
-  if (!product) return <div>Product not found</div>
 
+  if (!product) return <div>Product not found</div>
   return (
     <div key={id} className="productPage__container">
       <img className="productPage__advert" src="/imgs/amazon-advert.png" alt="amazon-advert" />

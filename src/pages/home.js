@@ -1,4 +1,5 @@
 import React from 'react';
+import {StateContextConsumer} from '../context/state'
 import { ProductHome } from '../container/productHome'
 
 import { CarouselContainer } from '../container/carousel'
@@ -13,9 +14,13 @@ import { features } from '../featuresData'
 export default function Home() {
 
   return (
-    <Layout>
+    <Layout.Column>
       <CarouselContainer slides={carouselImages} />
-      <FeatureContainer features={features} />
-    </Layout>
+      <StateContextConsumer>
+        {([{ user }]) =>(
+          <FeatureContainer features={features} user={user} />
+        )}
+      </StateContextConsumer>
+    </Layout.Column>
   )
 }

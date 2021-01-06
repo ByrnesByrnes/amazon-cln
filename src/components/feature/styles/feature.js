@@ -34,7 +34,7 @@ export const Link = styled(RouterLink)
 `
   color: #007185;
   transition: .2s;
-
+  margin-top: 10px;
   &:hover {
     color: #C7511F;
     text-decoration: underline;
@@ -53,6 +53,7 @@ export const Group = styled.div
   background: #fff;
   padding: 20px;
   height: 100%;
+  justify-content: space-between;
 `
 export const Login = styled.div 
 `
@@ -64,7 +65,7 @@ export const Item = styled.div
 `
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  
   position: relative;
 
   

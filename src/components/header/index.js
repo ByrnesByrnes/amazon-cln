@@ -10,6 +10,7 @@ import {
   Nav,
   NavLink,
   NavOption,
+  Button,
 
 } from './styles/header'
 
@@ -28,7 +29,7 @@ Header.Search = function HeaderSearch({...restProps}) {
 
   const handleSubmit= event => {
     event.preventDefault()
-    history.push(`${ROUTES.BROWSE}${'?search=' + searchTerm}`)
+    history.push(`${ROUTES.BROWSE}${'?title=' + searchTerm.trim()}`)
   }
 
   return (
@@ -37,10 +38,9 @@ Header.Search = function HeaderSearch({...restProps}) {
         type="text" 
         onChange={event => setSearchTerm(event.target.value)}
       /> 
-      <Link to={`${ROUTES.BROWSE}${'?search=' + searchTerm}`}>
+      <Button>
         <SearchIcon />
-      </Link>
-    
+      </Button>
     </Search>
   )
 }

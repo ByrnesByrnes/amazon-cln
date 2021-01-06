@@ -20,8 +20,14 @@ export default function Sidebar({children, ...restProps}) {
 Sidebar.Option = function SidebarOption({children, ...restProps}) {
   return <Option {...restProps}>{children}</Option>
 }
-Sidebar.Link = function SidebarLink({children, query, ...restProps}) {
-  return <Link to={`${ROUTES.BROWSE}${'?search=' + query}`}  {...restProps}>{children}</Link>
+Sidebar.Link = function SidebarLink({
+  children, 
+  search, 
+  query="",
+  title="", 
+  queryTwo="", 
+  ...restProps}) {
+  return <Link to={`${ROUTES.BROWSE}?${search}=${query}${queryTwo ? '&price_to=' + queryTwo : ''}${title ? '&title=' + title : ''}`}  {...restProps}>{children}</Link>
 }
 
 Sidebar.Subtitle = function SidebarSubtitle({children, ...restProps}) {

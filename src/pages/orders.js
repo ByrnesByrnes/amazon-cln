@@ -10,11 +10,9 @@ export default function Orders() {
   const [{user}] = StateContext()
   const [orders, setOrders] = useState([])
   
-  
   orders.map(
     order => order.data.cart
-    ).map(cart => cart.map(item => console.log(item)))
-      
+    ).map(cart => cart.map(item => item)) 
 
   useEffect(() => {
     if(user) {
@@ -38,7 +36,7 @@ export default function Orders() {
       <Order>
         <Order.Title>Your Orders</Order.Title>
           {orders.map((order, i) => (
-            <OrderContainer key={i} order={order} />
+            <OrderContainer  order={order} />
           ))}
       </Order>
     </div>

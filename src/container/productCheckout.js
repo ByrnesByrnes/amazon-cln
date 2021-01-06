@@ -21,12 +21,12 @@ export function ProductCheckout({ product }) {
             </Product.Link>
             <Product.Group className="productPage__availability">
               {available ? 
-                <Product.SmallText>In Stock</Product.SmallText>
+                <Product.TextSmall className="stocked">In Stock</Product.TextSmall>
                :<span>Currently unavailable.</span>
               }
             </Product.Group>
-            <Product.SmallText>Sold by Eluktronics and Fulfilled By Amazon.ca.</Product.SmallText>
-            <Product.SmallText>Eligible for FREE shipping</Product.SmallText>
+            <Product.TextSmall>Sold by Eluktronics and Fulfilled By Amazon.ca.</Product.TextSmall>
+            <Product.TextSmall>Eligible for FREE shipping</Product.TextSmall>
             <Subtotal.Gift>This will be gift Learn more</Subtotal.Gift>
             <Product.Group className="checkout__action">
               <Product.Button className="secondary">Qty: 1<ExpandMoreIcon /></Product.Button>
@@ -37,7 +37,7 @@ export function ProductCheckout({ product }) {
 
         </Product.Group>
         <Product.Group>
-          <Product.Price>{price}</Product.Price>
+          <Product.Price>$ {price}</Product.Price>
         </Product.Group>
       </Product>
     </>
