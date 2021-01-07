@@ -70,6 +70,7 @@ export const Card = styled.div
   min-height: 400px;
   border-bottom: 2px solid #ddd;
   margin: 15px 0;
+  max-height: 450px;
 `
 
 export const TextSmall = styled.p

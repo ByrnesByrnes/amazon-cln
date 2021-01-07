@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { truncateDesc } from '../utils/utils'
-import { SearchFilter } from '../utils/searchFilter'
+import { SearchFilter } from '../hooks/searchFilter'
 
 import * as ROUTES from '../constants/routes'
-import { Product, Rating, Sidebar, Layout } from '../components'
+import { Product, Rating, Sidebar, Layout, Checkbox } from '../components'
 
 
 function useQuery() {
@@ -17,35 +17,76 @@ function useQuery() {
 export function BrowseContainer({ products }) {
   const [check, setCheck] = useState(false)
   const [queryResults, setQueryResults] = useState('')
-
+  const [sideBrands, setSideBrands] = useState([])
 
   const queryTitle = useQuery().get('title')
-  
-  
-  const {results} =  SearchFilter(products)
 
-  // useEffect(() => {
-  //   if (searchedResult) {
-  //     if (results.length === 0) {
-  //       setQueryResults(<p style={{ width: "100%"}}>No results found for <strong>"{searchedResult}".</strong> Showing Default Results</p>)
-  //     } else {
-  //       if (queryKey === 'rating') {
-  //         setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{searchedResult} stars"</strong></p>)
-  //       } else {
-  //         setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{searchedResult}"</strong></p>)
-  //       }
-  //     }
-  //   } else {
-  //     setQueryResults('')
-  //   }
-  // }, [searchedResult])
+  const { results, keys, values } = SearchFilter(products)
 
-  const browseProducts = results.length > 0 ? results : products 
+
+  const searchBrands = [...new Set(products.map(product => product.brand.toLowerCase()))]
+
+
+  const setBrands = () => {
+    let brands = []
+    if (sideBrands.length === 0 ) {
+      for (let i = 0; i < searchBrands.length; i++) {
+        brands.push({
+          "name": searchBrands[i],
+          "checked": false
+        })
+      }
+      setSideBrands(brands)
+    }
+  }
+
+
+  console.log(sideBrands, 'Brands')
+
+
+
+
+  const handleClick = event => {
+    const clickTarget = event.target.textContent
+
+    const updatedArray = sideBrands.map(brand => {
+      if (clickTarget === brand.name) {
+        console.log(brand.name, "MATCHED")
+        return { ...brand, checked: !brand.checked }
+      } 
+      return {...brand, checked: brand.checked && false }
+    })
+    return setSideBrands(updatedArray)
+  }
+  // Pull from browse query refractor
+  // const searchParams = useQuery()
+  // fix search result bar at too delayed
+  // console.log(results)
+
+
+
+  useEffect(() => {
+    setBrands()
+    if (results) {
+      if (results.length === 0) {
+        setQueryResults(<p style={{ width: "100%" }}>No results found for <strong>"{values[0]}".</strong> Showing Default Results</p>)
+      } else {
+        if (keys[0] === 'rating') {
+          setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{values[0]} stars"</strong></p>)
+        } else {
+          setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{keys[0]}"</strong></p>)
+        }
+      }
+    } else {
+      setQueryResults('')
+    }
+  }, [keys[0], values[0], keys.length])
+
+  const browseProducts = results.length > 0 ? results : products
 
   return (
 
     <Layout>
-
       <Layout.Row
         style={{
           borderBottom: "1px solid #ddd",
@@ -53,16 +94,13 @@ export function BrowseContainer({ products }) {
           minHeight: "60px"
         }}
       >
-        <Layout.Column style={{ 
+        <Layout.Column style={{
           margin: "0",
-         
-          }}>
-              {queryResults}
+
+        }}>
+          {queryResults}
         </Layout.Column>
       </Layout.Row>
-
-
-
 
 
       <Layout.Column>
@@ -84,48 +122,37 @@ export function BrowseContainer({ products }) {
                   search={'rating'}
                   query={4 - i}
                   title={queryTitle}
-                  key={i} style={{
+                  key={i} 
+                  style={{
                     display: "flex",
                     alignItems: "center",
                     lineHeight: "20px",
                   }}>
-                  <Rating rating={4 - i}/> <p> & Up</p>
+                  <Rating rating={4 - i} /> <p> & Up</p>
                 </Sidebar.Link>
               ))}
             </Sidebar.Option>
-            <Sidebar.Option>
+            <Sidebar.Option style={{ display: searchBrands.length > 0 ? 'block' : 'none' }}>
               <Sidebar.Subtitle>Brand</Sidebar.Subtitle>
               <Sidebar.List>
-                <Sidebar.ListItem onClick={() => setCheck(!check)}>
-                  <Sidebar.Label>Alienware</Sidebar.Label>
-                  <Sidebar.Input type="checkbox" checked={check} />
+                {/* Sampe test code! */}
+                <Sidebar.ListItem onClick={() => setCheck(!check)} checked="checked">
+                  <Sidebar.Label>Alienware demo</Sidebar.Label>
+                  <Sidebar.Input type="checkbox" checked={check} readOnly />
                   <Sidebar.CheckMark></Sidebar.CheckMark>
                 </Sidebar.ListItem>
-                <Sidebar.Link>
-                  <Sidebar.ListItem>
-                    <Sidebar.Label>Eluktronics</Sidebar.Label>
-                    <Sidebar.Input type="checkbox" />
-                    <Sidebar.CheckMark></Sidebar.CheckMark>
+
+                {sideBrands.map((brand, i) => (
+                  <Sidebar.ListItem onClick={handleClick}>
+                    <Sidebar.Link
+                      key={i}
+                      search={'brand'}
+                      query={brand.name}
+                    >
+                      <Checkbox checked={brand.checked}>{brand.name}</Checkbox>
+                    </Sidebar.Link>
                   </Sidebar.ListItem>
-                </Sidebar.Link>
-
-                <Sidebar.ListItem>
-                  <Sidebar.Label>Razor</Sidebar.Label>
-                  <Sidebar.Input type="checkbox" checked="checked" />
-                  <Sidebar.CheckMark></Sidebar.CheckMark>
-                </Sidebar.ListItem>
-
-                <Sidebar.ListItem>
-                  <Sidebar.Label>MSI</Sidebar.Label>
-                  <Sidebar.Input type="checkbox" />
-                  <Sidebar.CheckMark></Sidebar.CheckMark>
-                </Sidebar.ListItem>
-
-                <Sidebar.ListItem>
-                  <Sidebar.Label>Acer</Sidebar.Label>
-                  <Sidebar.Input type="checkbox" />
-                  <Sidebar.CheckMark></Sidebar.CheckMark>
-                </Sidebar.ListItem>
+                ))}
               </Sidebar.List>
             </Sidebar.Option>
 
@@ -135,7 +162,7 @@ export function BrowseContainer({ products }) {
               {/* Look this after */}
               <Sidebar.List>
                 <Sidebar.Link
-                  search={'price'} 
+                  search={'price'}
                   query={'25'}
                   queryTwo={''}
                   title={queryTitle}
