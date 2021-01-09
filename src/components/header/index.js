@@ -29,7 +29,7 @@ Header.Search = function HeaderSearch({...restProps}) {
 
   const handleSubmit= event => {
     event.preventDefault()
-    history.push(`${ROUTES.BROWSE}${searchTerm.length > 0 ? `?title=${searchTerm.trim()}` : ''}`)
+    history.push(`${ROUTES.BROWSE}${searchTerm.length > 0 ? `?title=${searchTerm}` : ''}`)
   }
 
   return (

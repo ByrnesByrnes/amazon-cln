@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom'
 
 import { truncateDesc } from '../utils/utils'
 import { SearchFilter } from '../hooks/searchFilter'
+import { SidebarBrands } from '../hooks/sidebarBrands'
+
+import { Pagination } from '../components'
 
 import * as ROUTES from '../constants/routes'
 import { Product, Rating, Sidebar, Layout, Checkbox } from '../components'
@@ -15,75 +18,75 @@ function useQuery() {
 
 
 export function BrowseContainer({ products }) {
-  const [check, setCheck] = useState(false)
   const [queryResults, setQueryResults] = useState('')
-  const [sideBrands, setSideBrands] = useState([])
 
-  const queryTitle = useQuery().get('title')
+  const productsPerPage = 8
+  
+  const { results, keys, values, currentPage, setCurrentPage, queryTitle } = SearchFilter(products)
+  const { sideBrands, setSideBrands, searchBrands } = SidebarBrands(products)
+  
+  
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+  
+  const indexOfLastProduct = currentPage * productsPerPage // page one equals 1 * 8 = 8
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage // page 2 ex 16-8 = 8
+  
+  // console.log(indexOfFirstProduct, ' - ', indexOfLastProduct )
+  const currentProducts = results.length > 0 ? results.slice(indexOfFirstProduct, indexOfLastProduct) : products.slice(indexOfFirstProduct, indexOfLastProduct)
 
-  const { results, keys, values } = SearchFilter(products)
-
-
-  const searchBrands = [...new Set(products.map(product => product.brand.toLowerCase()))]
-
-
-  const setBrands = () => {
-    let brands = []
-    if (sideBrands.length === 0 ) {
-      for (let i = 0; i < searchBrands.length; i++) {
-        brands.push({
-          "name": searchBrands[i],
-          "checked": false
-        })
-      }
-      setSideBrands(brands)
-    }
-  }
-
-
-  console.log(sideBrands, 'Brands')
-
-
-
-
+  
+  //event for brand side bar selection
   const handleClick = event => {
     const clickTarget = event.target.textContent
-
     const updatedArray = sideBrands.map(brand => {
       if (clickTarget === brand.name) {
-        console.log(brand.name, "MATCHED")
         return { ...brand, checked: !brand.checked }
       } 
       return {...brand, checked: brand.checked && false }
     })
     return setSideBrands(updatedArray)
   }
-  // Pull from browse query refractor
-  // const searchParams = useQuery()
-  // fix search result bar at too delayed
-  // console.log(results)
+  
+  const returnResults = () => {
+    if(results.length === 0) {
+      return (
+        <p style={{ width: "100%" }}>No results found for <strong>"{values[values.length - 1]}".</strong> Showing Default Results</p>
+      )
 
-
-
-  useEffect(() => {
-    setBrands()
-    if (results) {
-      if (results.length === 0) {
-        setQueryResults(<p style={{ width: "100%" }}>No results found for <strong>"{values[0]}".</strong> Showing Default Results</p>)
-      } else {
-        if (keys[0] === 'rating') {
-          setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{values[0]} stars"</strong></p>)
-        } else {
-          setQueryResults(<p>{results.length} result{results.length > 1 && "s"} for <strong>"{keys[0]}"</strong></p>)
-        }
-      }
     } else {
-      setQueryResults('')
+      if (keys.length === 1 && (keys[0] === 'rating' || 'price')) {
+        return (
+          <p>{indexOfFirstProduct + 1}-{indexOfLastProduct > results.length ? results.length : indexOfLastProduct} of {results.length} result{currentProducts.length > 1 && "s"} for <strong>"{keys} of {values}"</strong></p>
+        )
+      }
+      return (
+        <p>{indexOfFirstProduct + 1}-{indexOfLastProduct > results.length ? results.length : indexOfLastProduct} of {results.length} result{currentProducts.length > 1 && "s"} for <strong>"{values[values.length - 1]}"</strong></p>
+      )
+
+
     }
-  }, [keys[0], values[0], keys.length])
+  }
 
-  const browseProducts = results.length > 0 ? results : products
+ 
 
+  
+
+  //   if (results.length === 0) {
+  //     setQueryResults(<p>No results Found</p>)
+  //     if (results.length === 0) {
+  //       // setQueryResults(<p style={{ width: "100%" }}>No results found for <strong>"{values[0]}".</strong> Showing Default Results</p>)
+  //     } else {
+  //       if (keys[0] === 'rating') {
+  //         setQueryResults(<p>{indexOfFirstProduct + 1} - {indexOfLastProduct > results.length ? results.length : indexOfLastProduct} of {results.length} result{currentProducts.length > 1 && "s"} for <strong>"{values[0]} stars"</strong></p>)
+  //       } else {
+  //         setQueryResults(<p>{indexOfFirstProduct + 1} - {indexOfLastProduct > results.length ? results.length : indexOfLastProduct} of {results.length} result{currentProducts.length > 1 && "s"} for <strong>"{values[0]}"</strong></p>)
+  //       }
+  //     }
+  //   } else {
+  //     setQueryResults(<p>showing Results</p>)
+  //   }
+ 
+  
   return (
 
     <Layout>
@@ -98,7 +101,7 @@ export function BrowseContainer({ products }) {
           margin: "0",
 
         }}>
-          {queryResults}
+          {returnResults()}
         </Layout.Column>
       </Layout.Row>
 
@@ -116,9 +119,10 @@ export function BrowseContainer({ products }) {
               <Sidebar.Link>Computers & Accesories</Sidebar.Link>
             </Sidebar.Option>
             <Sidebar.Option>
-              <Sidebar.Subtitle>Avg.Customer Review</Sidebar.Subtitle>
+              <Sidebar.Subtitle>Avg. Customer Review</Sidebar.Subtitle>
               {Array(4).fill().map((_, i) => (
                 <Sidebar.Link
+                  active={values[0] === (4 - i).toString()}
                   search={'rating'}
                   query={4 - i}
                   title={queryTitle}
@@ -136,32 +140,28 @@ export function BrowseContainer({ products }) {
               <Sidebar.Subtitle>Brand</Sidebar.Subtitle>
               <Sidebar.List>
                 {/* Sampe test code! */}
-                <Sidebar.ListItem onClick={() => setCheck(!check)} checked="checked">
-                  <Sidebar.Label>Alienware demo</Sidebar.Label>
-                  <Sidebar.Input type="checkbox" checked={check} readOnly />
-                  <Sidebar.CheckMark></Sidebar.CheckMark>
-                </Sidebar.ListItem>
 
                 {sideBrands.map((brand, i) => (
                   <Sidebar.ListItem onClick={handleClick}>
                     <Sidebar.Link
+                      active={values[0] === brand.name}
                       key={i}
                       search={'brand'}
                       query={brand.name}
                     >
-                      <Checkbox checked={brand.checked}>{brand.name}</Checkbox>
+                      <Checkbox checked={values[0] === brand.name}>{brand.name}</Checkbox>
                     </Sidebar.Link>
                   </Sidebar.ListItem>
                 ))}
               </Sidebar.List>
             </Sidebar.Option>
 
-
             <Sidebar.Option>
               <Sidebar.Subtitle>Price</Sidebar.Subtitle>
               {/* Look this after */}
               <Sidebar.List>
                 <Sidebar.Link
+                  active={values[values.length - 1] === '25'}
                   search={'price'}
                   query={'25'}
                   queryTwo={''}
@@ -172,6 +172,7 @@ export function BrowseContainer({ products }) {
 
                 {Array(4).fill().map((_, i) => (
                   <Sidebar.Link
+                    active={parseInt(values[0]) === 25 * (i + 1) && parseInt(values[1]) === (i >= 4 ? 100 * i : 50 * (i + 1)) }
                     key={i}
                     search={'price'}
                     query={25 * (i + 1)}
@@ -182,6 +183,7 @@ export function BrowseContainer({ products }) {
                   </Sidebar.Link>
                 ))}
                 <Sidebar.Link
+                  active={values[0] === '200'}
                   search={'price'}
                   query={'200'}
                   queryTwo={''}
@@ -189,16 +191,12 @@ export function BrowseContainer({ products }) {
                 >
                   <Sidebar.ListItem>$200 to Above</Sidebar.ListItem>
                 </Sidebar.Link>
-
               </Sidebar.List>
             </Sidebar.Option>
 
-
-
-
           </Sidebar>
           <Product.Browse>
-            {browseProducts.map(product => (
+            {currentProducts.map(product => (
               <Product.Card key={product.id}>
 
                 <Product.Group>
@@ -242,7 +240,9 @@ export function BrowseContainer({ products }) {
               </Product.Card>
             ))}
           </Product.Browse>
+        
         </Layout.Row>
+            <Pagination totalProducts={results.length || products.length} productsPerPage={productsPerPage} paginate={paginate}/>
       </Layout.Column>
     </Layout>
   )
