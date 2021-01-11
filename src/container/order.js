@@ -43,7 +43,6 @@ export function OrderContainer({ order }) {
           <Order.Subtitle>Delivered Oct 9, 2020</Order.Subtitle>
         </Order.Group>
 
-
         {/* PRODUCT SECTION */}
         {order.data.cart.map(product => (
           <Order.Row>
@@ -61,7 +60,7 @@ export function OrderContainer({ order }) {
                   </Product.Text>
                   <Order.Text>Return eligible through Jan 31, 2021</Order.Text>
                   <Order.Price>CDN$ {product.price}</Order.Price>
-                  <Product.AddCart><RepeatIcon />Buy it Again</Product.AddCart>
+                  <Product.AddCart product={product} ><RepeatIcon />Buy it Again</Product.AddCart>
                 </Product.Group>
               </Order.Row>
             </Order.Item>

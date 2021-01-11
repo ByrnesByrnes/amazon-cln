@@ -118,9 +118,10 @@ export default function Signup() {
           <Form.Link>Conditions of Use</Form.Link> and <Form.Link> Privacy Notice</Form.Link>.
         </Form.Text>
         <hr />
-        <div className="break">
+
+        <Form.Break>
           <Form.Text>Already have an account? <Form.Link to={ROUTES.LOGIN}>Sign In <ArrowRightOutlinedIcon/></Form.Link></Form.Text>
-        </div>
+        </Form.Break>
       </Form.Frame>
     </Form>
   )

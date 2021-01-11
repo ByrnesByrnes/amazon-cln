@@ -8,24 +8,6 @@ export const Container = styled.section
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-
-  .break {
-    position: relative;
-    padding-top: 10px;
-    height: 44px;
-    margin-bottom: -18px;
-    background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
-  }
-
-  .break:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 44px;
-    display: block;
-    background: linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
-  }
 `
 export const Frame = styled.form
 `
@@ -148,5 +130,24 @@ export const Button = styled.button
 
   & + ${Text} {
     line-height: 1.5;
+  }
+`
+
+export const Break = styled.div 
+`
+  position: relative;
+  padding-top: 10px;
+  height: 44px;
+  margin-bottom: -18px;
+  background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    display: block;
+    background: linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
   }
 `

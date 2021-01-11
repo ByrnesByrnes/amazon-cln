@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
-import { ProductCheckout } from '../container/productCheckout'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { instance as axios } from '../axios/axios'
-import { Subtotal, Form } from '../components'
+import { Subtotal, Form, Checkout } from '../components'
 import { getCartSubtotal, getCartTotal } from '../reducer'
 import { db } from '../firebase/config'
 
@@ -97,7 +96,7 @@ export default function Payment({ cart, dispatch, user }) {
           <div className="payment__right">
 
             {cart.map((product, i) => (
-              <ProductCheckout key={i} product={product} />
+              <Checkout.Product key={i} product={product} />
             ))}
           </div>
         </div>

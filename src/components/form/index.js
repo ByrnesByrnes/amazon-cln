@@ -9,6 +9,7 @@ import {
   Image,
   Button,
   Link,
+  Break,
 } from './styles/form'
 
 export default function Form({children, ...restProps}) {
@@ -44,4 +45,8 @@ Form.Link = function FormLink({children,...restProps}) {
 
 Form.Image = function FormImage({...restProps}) {
   return <Image {...restProps}/>
+}
+
+Form.Break = function FormBreak({children, ...restProps}) {
+  return <Break {...restProps}>{children}</Break>
 }

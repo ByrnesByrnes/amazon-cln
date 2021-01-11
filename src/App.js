@@ -5,7 +5,7 @@ import { HeaderContainer } from './container/header'
 import { StateContext, StateContextConsumer } from './context/state'
 import { auth } from './firebase/config'
 import { loadStripe } from '@stripe/stripe-js'
-import { Elements }from '@stripe/react-stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 import {
   Home,
   Checkout,
@@ -20,12 +20,12 @@ import {
 const promise = loadStripe('pk_test_cD4OWMH3AI2yCM5yrcBQB5fV')
 
 function App() {
-  const [state,dispatch] = StateContext()
+  const [state, dispatch] = StateContext()
 
-  useEffect(()=> {
+  useEffect(() => {
 
     auth.onAuthStateChanged(authUser => {
-      if(authUser) {
+      if (authUser) {
         dispatch({
           type: 'SET_USER',
           payload: authUser
@@ -38,53 +38,51 @@ function App() {
       }
     })
 
-  },[])
+  }, [])
 
 
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route path={ROUTES.SIGN_UP}>
-            <Signup />
-          </Route>
-          <Route path={ROUTES.LOGIN}>
-            <Login />
-          </Route>
-          <Route path={ROUTES.ORDERS}>
-            <HeaderContainer />
-            <Orders />
-          </Route>
-          <Route path={`${ROUTES.PRODUCT}/:id`}>
-            <HeaderContainer />
-            <ProductPage />
-          </Route>
-          <Route path={`${ROUTES.BROWSE}`}>
-            <HeaderContainer />
-            <Browse />
-          </Route>
-          <Route path={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
-            <HeaderContainer />
-            <StateContextConsumer>
-              {([{user, cart }, dispatch]) => (
-                <Elements stripe={promise}>
-                  <Payment cart={cart} dispatch={dispatch} user={user} />
-                </Elements>
-              )}
-            </StateContextConsumer>
-          </Route>
-          <Route path={ROUTES.CHECKOUT}>
+      <Switch>
+        <Route path={ROUTES.SIGN_UP}>
+          <Signup />
+        </Route>
+        <Route path={ROUTES.LOGIN}>
+          <Login />
+        </Route>
+        <Route path={ROUTES.ORDERS}>
+          <HeaderContainer />
+          <Orders />
+        </Route>
+        <Route path={`${ROUTES.PRODUCT}/:id`}>
+          <HeaderContainer />
+          <ProductPage />
+        </Route>
+        <Route path={`${ROUTES.BROWSE}`}>
+          <HeaderContainer />
+          <Browse />
+        </Route>
+        <Route path={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
+          <HeaderContainer />
+          <StateContextConsumer>
+            {([{ user, cart }, dispatch]) => (
+              <Elements stripe={promise}>
+                <Payment cart={cart} dispatch={dispatch} user={user} />
+              </Elements>
+            )}
+          </StateContextConsumer>
+        </Route>
+        <Route path={ROUTES.CHECKOUT}>
 
-            <HeaderContainer />
-            <Checkout />
+          <HeaderContainer />
+          <Checkout />
 
-          </Route>
-          <Route path={ROUTES.HOME}>
-            <HeaderContainer />
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+        </Route>
+        <Route path={ROUTES.HOME}>
+          <HeaderContainer />
+          <Home />
+        </Route>
+      </Switch>
     </Router>
 
 

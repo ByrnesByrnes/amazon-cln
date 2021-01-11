@@ -4,6 +4,7 @@ import * as ROUTES from '../constants/routes'
 
 export function FeatureContainer({ features, user }) {
 
+  if(!user) features = features.slice(0, features.length - 1)
 
   return (
     <Feature>
@@ -15,7 +16,7 @@ export function FeatureContainer({ features, user }) {
                 <Feature.Title>{feature.title}</Feature.Title>
                 <Feature.Link to={feature.link}>
 
-                <Feature.Image src={feature.img} />
+                <Feature.Image src={feature.img} alt={feature.title}/>
                 </Feature.Link>
                 <Feature.Link to={feature.link}>
                   <Feature.Text>{feature.text}</Feature.Text>

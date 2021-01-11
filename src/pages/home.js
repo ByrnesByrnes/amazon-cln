@@ -12,7 +12,6 @@ import { features } from '../featuresData'
 
 
 export default function Home() {
-
   return (
     <Layout.Column>
       <CarouselContainer slides={carouselImages} />

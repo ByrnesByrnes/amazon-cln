@@ -31,14 +31,12 @@ export const Browse = styled.div
   @media(min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
   }
-
 `
 
 export const Info = styled.div 
 `
   display: flex;
   flex-direction: column;
-  
 `
 
 export const Title = styled.h1
@@ -158,9 +156,7 @@ export const Link = styled(RouterLink)
       text-decoration: none;
     }
   }
-  
 `
-
 
 export const Button = styled.button
 `
@@ -195,5 +191,65 @@ export const Button = styled.button
     background: #F0F2F2;
     box-shadow: 0 2px 5px rgba(15, 17,17, .15);
     min-width: 77px;
+  }
+`
+
+export const Center = styled.div
+`
+  width: 40%
+`
+
+export const SideLeft = styled.div
+`
+  width: 35%;
+`
+
+export const Sidebar = styled.div
+`
+  margin-left: 20px;
+  width: 200px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+`
+
+export const Available = styled.div
+`
+  color: #0F1111;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+
+  span {
+    color: #B12704;
+    font-size: 18px;
+    line-height: 20px;
+  }
+`
+export const Specifications = styled.div
+`
+  width: 250px;
+
+  > td {
+    margin-bottom: 8px;
+
+    &:first-of-type {
+      font-weight: 500 !important;
+    }
+  } 
+`
+
+export const Rating = styled.div
+`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`
+
+export const Brand = styled.div
+`
+  color:#007185;
+
+  &:hover {
+    text-decoration: underline;
   }
 `

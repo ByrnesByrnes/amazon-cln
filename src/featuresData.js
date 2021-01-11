@@ -51,5 +51,12 @@ export const features = [
     title: 'In-game content from Prime Gaming',
     text: 'Explore more waus to play with Prime'
   },
+  {
+    id: 8,
+    link: `${ROUTES.BROWSE}`,
+    img: 'https://images-na.ssl-images-amazon.com/images/G/15/AMAZON_FASHION/2020/SPB/Disney/Layer_0_1x._SY304_CB412622675_.jpg',
+    title: 'New Amazon-exclusive designs',
+    text: 'Shop now'
+  },
 
 ]

@@ -4,6 +4,7 @@ export const products = [
     title: 'The Lean Startup',
     price: 33.45,
     brand: "Acer",
+    available: false,
     description: "Fusce ullamcorper augue at ipsum consectetur fermentum. Proin finibus faucibus ante eleifend eleifend. Nulla non augue nec metus iaculis finibus. Integer eu metus in libero posuere pellentesque vitae at tellus. Proin ullamcorper orci sit amet pharetra lobortis. Integer ut ligula id neque ultrices commodo vitae ac tortor. Duis et pellentesque ligula. Praesent magna lacus, tincidunt at mollis ac, interdum sed massa. Mauris est libero, pharetra quis euismod in, consectetur id mauris. Morbi volutpat diam in euismod cursus. Quisque sollicitudin vel lorem eu accumsan.Fusce ullamcorper augue at ipsum consectetur fermentum. Proin finibus faucibus ante eleifend eleifend. Nulla non augue nec metus iaculis finibus. Integer eu metus in libero posuere pellentesque vitae at tellus. Proin ullamcorper orci sit amet pharetra lobortis. Integer ut ligula id neque ultrices commodo vitae ac tortor. Duis et pellentesque ligula. Praesent magna lacus, tincidunt at mollis ac, interdum sed massa. Mauris est libero, pharetra quis euismod in, consectetur id mauris. Morbi volutpat diam in euismod cursus. Quisque sollicitudin vel lorem eu accumsan.",
     rating: 2,
     image: "https://m.media-amazon.com/images/I/71r5254QPZL._AC_UL320_.jpg"
@@ -13,6 +14,7 @@ export const products = [
     title: 'The game',
     price: 499.65,
     brand: "Alienware",
+    available: true,
     description: "Fusce ullamcorpFusce ullamcorper augue at ipsum consectetur fermentum. Proin finibus faucibus ante eleifend eleifend. Nulla non augue nec metus iaculis finibus. Integer eu metus in libero posuere pellentesque vitae at tellus. Proin ullamcorper orci sit amet pharetra lobortis. Integer ut ligula id neque ultrices commodo vitae ac tortor. Duis et pellentesque ligula. Praesent magna lacus, tincidunt at mollis ac, interdum sed massa. Mauris est libero, pharetra quis euismod in, consectetur id mauris. Morbi volutpat diam in euismod cursus. Quisque sollicitudin vel lorem eu accumsan.er augue at ipsum consectetur fermentum. Proin finibus faucibus ante eleifend eleifend. Nulla non augue nec metus iaculis finibus. Integer eu metus in libero posuere pellentesque vitae at tellus. Proin ullamcorper orci sit amet pharetra lobortis. Integer ut ligula id neque ultrices commodo vitae ac tortor. Duis et pellentesque ligula. Praesent magna lacus, tincidunt at mollis ac, interdum sed massa. Mauris est libero, pharetra quis euismod in, consectetur id mauris. Morbi volutpat diam in euismod cursus. Quisque sollicitudin vel lorem eu accumsan.",
     rating: 5,
     image: "https://m.media-amazon.com/images/I/81cAVFZEj4L._AC_UL320_.jpg"

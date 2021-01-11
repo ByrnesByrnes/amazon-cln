@@ -67,80 +67,6 @@ export const GlobalStyle = createGlobalStyle
     }
   }
 
-  /* ===== CHECKOUT PAGE ====*/
-  .checkout {
-    display: flex;
-    max-width: 1500px;
-    min-width: 670px;
-    margin: 10px auto;
-    justify-content: space-between;
-   
-    &__ad {
-      display: block;
-      margin: 0 auto;
-      width: 80%;
-    }
-
-    &__title {
-      display: flex;
-      margin-right: 10px;
-      padding: 10px;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    &__image {
-      width: 200px;
-    }
-
-    &__info {
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    &__description {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: left;
-      width:100%;
-    }
-
-    &__action {
-      display: flex;
-      align-items: center;
-      vertical-align: center;
-    }
-
-    &__product {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: fit-content;
-      min-width: 400px;
-      width: 100%;
-    }
-
-    &__left {
-      padding: 20px;
-      margin: 10px;
-      background: #fff;
-      min-height: 100px;
-      min-width: 500px;
-      width: 100%;
-    }
-
-    &__right {
-    }
-
-    &__price {
-      color:#565959 !important;
-      text-align: right;
-      margin-right: 25px;
-      width: 100%;
-      font-size: 14px;
-    }
-  }
-
   /* ----------- Payment Page ------------ */
   .payment {
     background-color: #fff;
@@ -174,21 +100,9 @@ export const GlobalStyle = createGlobalStyle
     margin: 20px 10px;
     display: flex;
     justify-content: space-between;
-    font-family: 'Roboto', san-serif;
+   
 
-    &__container {
-      max-width: 1500px;
-      margin: 0 auto;
-    }
-
-    &__left {
-      width: 37%;
-    }
-
-    &__right {
-      width: 60%;
-    }
-
+    
     &__advert {
       display: block;
       width: 70%;

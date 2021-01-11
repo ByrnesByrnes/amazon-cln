@@ -67,10 +67,6 @@ export function BrowseContainer({ products }) {
     }
   }
 
- 
-
-  
-
   //   if (results.length === 0) {
   //     setQueryResults(<p>No results Found</p>)
   //     if (results.length === 0) {
