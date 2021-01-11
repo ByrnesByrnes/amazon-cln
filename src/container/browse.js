@@ -16,17 +16,15 @@ function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
-
 export function BrowseContainer({ products }) {
   const [queryResults, setQueryResults] = useState('')
-
+ 
   const productsPerPage = 8
   
   const { results, keys, values, currentPage, setCurrentPage, queryTitle } = SearchFilter(products)
   const { sideBrands, setSideBrands, searchBrands } = SidebarBrands(products)
   
-  
-  const paginate = pageNumber => setCurrentPage(pageNumber)
+
   
   const indexOfLastProduct = currentPage * productsPerPage // page one equals 1 * 8 = 8
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage // page 2 ex 16-8 = 8
@@ -238,7 +236,12 @@ export function BrowseContainer({ products }) {
           </Product.Browse>
         
         </Layout.Row>
-            <Pagination totalProducts={results.length || products.length} productsPerPage={productsPerPage} paginate={paginate}/>
+            <Pagination 
+              totalProducts={results.length || products.length} 
+              productsPerPage={productsPerPage} 
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
       </Layout.Column>
     </Layout>
   )
