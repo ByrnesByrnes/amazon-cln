@@ -4,9 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div 
 `
   margin: auto;
- 
 `
-
 
 export const PageList = styled.ul
 `
@@ -45,7 +43,6 @@ export const Page = styled.button
   &:disabled {
     border: none;
     background: #fff;
-    
     filter: contrast(1);
     cursor: auto;
   }

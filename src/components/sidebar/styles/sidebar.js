@@ -5,7 +5,7 @@ export const Container = styled.div
   `
   margin: 15px;
   width: 250px;
-  height: 100vh;
+  height: fit-content;
   border-right: 1px solid #ddd;
   line-height: 30px;
 `

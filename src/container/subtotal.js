@@ -8,7 +8,7 @@ export function SubtotalContainer() {
     <Subtotal>
       <Subtotal.Calc>SubTotal</Subtotal.Calc>
       <Subtotal.Gift>This order contains a gift</Subtotal.Gift>
-      <Link to={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
+      <Link to={`${ROUTES.PAYMENT}`}>
         <Subtotal.Button >Proceed to Checkout</Subtotal.Button>
       </Link>
     </Subtotal>

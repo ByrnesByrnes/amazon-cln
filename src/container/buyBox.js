@@ -33,7 +33,7 @@ export function BuyBoxContainer({ product }) {
         {/* create custom component for check in BuyBox */}
         <Subtotal.Gift style={{ display: "block" }}>Try<BuyBox.Link> Amazon Prime </BuyBox.Link>
           and start saving today with
-          <BuyBox.Bold> fast, free devlivery on millions of items</BuyBox.Bold>
+          <BuyBox.Bold> fast, free delivery on millions of items</BuyBox.Bold>
         </Subtotal.Gift>
       </BuyBox.Group>
       <Subtotal.Gift> Buy this item as a gift</Subtotal.Gift>

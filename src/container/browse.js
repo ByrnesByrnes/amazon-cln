@@ -211,7 +211,7 @@ export function BrowseContainer({ products }) {
                   }
                   <Rating rating={product.rating} size={"1.2rem"} />
 
-                  {!product.available ?
+                  {product.available ?
                     <Product.Price
                       className="browse"
                       price={product.price}
@@ -223,7 +223,7 @@ export function BrowseContainer({ products }) {
                     </Product.Link>
 
                   }
-                  {product.available ?
+                  {!product.available ?
                     <Product.Text className="secondary">Currently unavailable.</Product.Text> :
                     <Product.Text className="secondary">Get it by <strong>Sunday, Jan 3 </strong>
                 FREE Shipping by Amazon

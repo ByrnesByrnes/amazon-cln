@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import * as ROUTES from './constants/routes'
 import { HeaderContainer } from './container/header'
 import { StateContext, StateContextConsumer } from './context/state'
+import { ProtectedRoute} from './helpers/routes'
 import { auth } from './firebase/config'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
@@ -40,6 +41,7 @@ function App() {
 
   }, [])
 
+  const user = state.user
 
   return (
     <Router>
@@ -58,11 +60,12 @@ function App() {
           <HeaderContainer />
           <ProductPage />
         </Route>
-        <Route path={`${ROUTES.BROWSE}`}>
+        <Route path={ROUTES.BROWSE}>
           <HeaderContainer />
           <Browse />
         </Route>
-        <Route path={`${ROUTES.CHECKOUT}${ROUTES.PAYMENT}`}>
+
+        <ProtectedRoute user={user} path={ROUTES.PAYMENT}>
           <HeaderContainer />
           <StateContextConsumer>
             {([{ user, cart }, dispatch]) => (
@@ -71,7 +74,9 @@ function App() {
               </Elements>
             )}
           </StateContextConsumer>
-        </Route>
+        </ProtectedRoute>
+
+
         <Route path={ROUTES.CHECKOUT}>
 
           <HeaderContainer />

@@ -51,7 +51,7 @@ Checkout.Product = function CheckoutProduct({ children, product, ...restProps })
     <Product>
       <div className="info">
         <div className="image">
-          <img src="/imgs/pexels-luizmedeirosph.jpg" alt="" />
+          <img src={product.image} alt={product.title} />
         </div>
         <div className="description">
           <Link to={`${ROUTES.PRODUCT}/${id}`}>

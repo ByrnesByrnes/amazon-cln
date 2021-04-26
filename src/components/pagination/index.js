@@ -1,7 +1,7 @@
 import React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { 
+import {
   Container,
   PageList,
   Pages,
@@ -11,19 +11,19 @@ import {
 
 export default function Pagination({ children, totalProducts, productsPerPage, setCurrentPage, currentPage, ...restProps }) {
   const pageNumbers = []
-  
+
   const nextPage = currentPage => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     setCurrentPage(currentPage + 1)
   }
-  
+
   const prevPage = () => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     setCurrentPage(currentPage - 1)
   }
-  
+
   const paginate = pageNumber => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     setCurrentPage(pageNumber)
   }
 
@@ -34,18 +34,18 @@ export default function Pagination({ children, totalProducts, productsPerPage, s
   return (
     <Container {...restProps}>
       <PageList>
-        <Page 
+        <Page
           onClick={() => prevPage(currentPage)}
           disabled={currentPage === 1}
         ><ArrowBackIcon />Prev</Page>
         {pageNumbers.map(number => (
           <Pages key={number} onClick={() => paginate(number)}>
-            <Page active={number===currentPage}>
+            <Page active={number === currentPage}>
               {number}
             </Page>
           </Pages>
         ))}
-        <Page 
+        <Page
           onClick={() => nextPage(currentPage)}
           disabled={currentPage === pageNumbers.length}
         >Next<ArrowForwardIcon /></Page>
