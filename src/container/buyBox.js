@@ -9,11 +9,11 @@ export function BuyBoxContainer({ product }) {
       <BuyBox.Price>CDN$ {product.price}</BuyBox.Price>
       <BuyBox.TextSmall>&
           <BuyBox.Bold> FREE Shipping. </BuyBox.Bold>
-        <BuyBox.Link>Details</BuyBox.Link>
+        <BuyBox.Link to="#">Details</BuyBox.Link>
       </BuyBox.TextSmall>
       <BuyBox.TextSmall>Arrives:
           <BuyBox.Bold> Monday, Jan 18 </BuyBox.Bold>
-        <BuyBox.Link>Details</BuyBox.Link>
+        <BuyBox.Link to="#">Details</BuyBox.Link>
       </BuyBox.TextSmall>
       <BuyBox.Text>
         Only 6 left in stock.
@@ -23,7 +23,7 @@ export function BuyBoxContainer({ product }) {
       <BuyBox.Button text={'Buy Now'}><PlayArrowIcon /></BuyBox.Button>
 
       <BuyBox.Secure>
-        <BuyBox.Link>
+        <BuyBox.Link to="#">
           <BuyBox.TextSmall><LockIcon /> Secure transaction</BuyBox.TextSmall>
         </BuyBox.Link>
       </BuyBox.Secure>
@@ -31,7 +31,7 @@ export function BuyBoxContainer({ product }) {
       <BuyBox.TextSmall>Ships from and sold by Amazon.ca</BuyBox.TextSmall>
       <BuyBox.Group>
         {/* create custom component for check in BuyBox */}
-        <Subtotal.Gift style={{ display: "block" }}>Try<BuyBox.Link> Amazon Prime </BuyBox.Link>
+        <Subtotal.Gift style={{ display: "block" }}>Try<BuyBox.Link to="#"> Amazon Prime </BuyBox.Link>
           and start saving today with
           <BuyBox.Bold> fast, free delivery on millions of items</BuyBox.Bold>
         </Subtotal.Gift>

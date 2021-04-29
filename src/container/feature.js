@@ -8,10 +8,10 @@ export function FeatureContainer({ features, user }) {
 
   return (
     <Feature>
-      {features.map(feature => (
-        <>
+      {features.map((feature, i) => (
+        <React.Fragment key={i}>
           {feature.text ?
-            <Feature.Item>
+            <Feature.Item key={i}>
               <Feature.Group>
                 <Feature.Title>{feature.title}</Feature.Title>
                 <Feature.Link to={feature.link}>
@@ -31,8 +31,8 @@ export function FeatureContainer({ features, user }) {
                 </Feature.Link>
               </Feature.Login>
             </Feature.Item>
-          }
-        </>
+          }   
+        </React.Fragment>
       ))}
     </Feature>
 

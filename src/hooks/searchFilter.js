@@ -20,7 +20,7 @@ export function SearchFilter(products) {
     queries[key] = value
   })
 
-  console.log(queries, 'Queries')
+  // console.log(queries, 'Queries')
 
   const keys = Object.keys(queries)
   const values = Object.values(queries)
@@ -37,10 +37,10 @@ export function SearchFilter(products) {
           result = products.filter(product => product[keys[keys.length - 1]].toLowerCase().includes(values[values.length - 1]) && product[keys[0]] >= values[0])
           return setResults(result)
         case 'price title':
-          console.log("PRICE TITLE")
+          // console.log("PRICE TITLE")
 
           if (values[0] <= 25) {
-            console.log('under 25')
+            // console.log('under 25')
             result = products.filter(product => product[keys[keys.length - 1]].toLowerCase().includes(values[values.length - 1]) && product[keys[0]] <= values[0])
           } else if (values[0] >= 200) {
             result = products.filter(product => product[keys[keys.length - 1]].toLowerCase().includes(values[values.length - 1]) && product[keys[0]] >= values[0])
@@ -52,7 +52,7 @@ export function SearchFilter(products) {
           return setResults(result)
 
         case 'price price_to title':
-          console.log('Price with title')
+          // console.log('Price with title')
           result = products.filter(
             product => product[keys[0]] >= parseInt(values[0]) &&
               product[keys[0]] <= parseInt(values[1]) &&

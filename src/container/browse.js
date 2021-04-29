@@ -116,7 +116,7 @@ export function BrowseContainer({ products }) {
               <Sidebar.Subtitle>Avg. Customer Review</Sidebar.Subtitle>
               {Array(4).fill().map((_, i) => (
                 <Sidebar.Link
-                  active={values[0] === (4 - i).toString()}
+                  active={values[0] === (4 - i).toString() ? "active" : undefined}
                   search={'rating'}
                   query={4 - i}
                   title={queryTitle}
@@ -136,10 +136,11 @@ export function BrowseContainer({ products }) {
                 {/* Sampe test code! */}
 
                 {sideBrands.map((brand, i) => (
-                  <Sidebar.ListItem onClick={handleClick}>
+                  <Sidebar.ListItem
+                    key={i} 
+                    onClick={handleClick}>
                     <Sidebar.Link
-                      active={values[0] === brand.name}
-                      key={i}
+                      active={values[0] === brand.name ? "active" : undefined}
                       search={'brand'}
                       query={brand.name}
                     >
@@ -155,7 +156,7 @@ export function BrowseContainer({ products }) {
               {/* Look this after */}
               <Sidebar.List>
                 <Sidebar.Link
-                  active={values[values.length - 1] === '25'}
+                  active={values[values.length - 1] === '25' ? "active" : undefined}
                   search={'price'}
                   query={'25'}
                   queryTwo={''}
@@ -166,7 +167,7 @@ export function BrowseContainer({ products }) {
 
                 {Array(4).fill().map((_, i) => (
                   <Sidebar.Link
-                    active={parseInt(values[0]) === 25 * (i + 1) && parseInt(values[1]) === (i >= 4 ? 100 * i : 50 * (i + 1)) }
+                    active={parseInt(values[0]) === 25 * (i + 1) && parseInt(values[1]) === (i >= 4 ? 100 * i : 50 * (i + 1)) ? "active" : undefined }
                     key={i}
                     search={'price'}
                     query={25 * (i + 1)}
@@ -177,7 +178,7 @@ export function BrowseContainer({ products }) {
                   </Sidebar.Link>
                 ))}
                 <Sidebar.Link
-                  active={values[0] === '200'}
+                  active={values[0] === '200' ? "active" : undefined}
                   search={'price'}
                   query={'200'}
                   queryTwo={''}
@@ -190,8 +191,8 @@ export function BrowseContainer({ products }) {
 
           </Sidebar>
           <Product.Browse>
-            {currentProducts.map(product => (
-              <Product.Card key={product.id}>
+            {currentProducts.map((product, i) => (
+              <Product.Card key={i}>
 
                 <Product.Group>
                   <Product.Link to={`${ROUTES.PRODUCT}/${product.id}`}>

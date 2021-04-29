@@ -20,7 +20,7 @@ export function OrderContainer({ order }) {
           </Order.Label>
           <Order.Label>
             <Order.Text>SHIP TO</Order.Text>
-            <Order.Link>
+            <Order.Link to="#">
               <Order.Text>Myron R Byrnes</Order.Text>
             </Order.Link>
           </Order.Label>
@@ -28,10 +28,10 @@ export function OrderContainer({ order }) {
         <Order.Label>
           <Order.Text>Order # {Date.now()}</Order.Text>
           <Order.Row>
-            <Order.Link>
+            <Order.Link to="#">
               <Order.Text>Order Details </Order.Text>
             </Order.Link>
-            <Order.Link>
+            <Order.Link to="#">
               <Order.Text>Invoice</Order.Text>
             </Order.Link>
           </Order.Row>
@@ -44,8 +44,8 @@ export function OrderContainer({ order }) {
         </Order.Group>
 
         {/* PRODUCT SECTION */}
-        {order.data.cart.map(product => (
-          <Order.Row>
+        {order.data.cart.map((product, i) => (
+          <Order.Row key={i}>
             <Order.Item>
               <Order.Row>
                 <Order.Group>
@@ -56,7 +56,7 @@ export function OrderContainer({ order }) {
                     <Product.Text>{product.title} - {product.description}</Product.Text>
                   </Order.Link>
                   <Product.Text>
-                    Sold by: <Order.Link>{product.brand}</Order.Link>
+                    Sold by: <Order.Link to="#">{product.brand}</Order.Link>
                   </Product.Text>
                   <Order.Text>Return eligible through Jan 31, 2021</Order.Text>
                   <Order.Price>CDN$ {product.price}</Order.Price>

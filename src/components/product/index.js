@@ -61,7 +61,6 @@ Product.Button = function ProductButton({ children, ...restProps }) {
 
 Product.AddCart = function ProductAddCart({ children, product, ...restProps }) {
   const [state, dispatch] = StateContext()
-  console.log(state.cart)
   const addToCart = (event) => {
     event.preventDefault()
 
@@ -144,8 +143,8 @@ Product.Available = function ProductAvailable({product, ...restProps }) {
 Product.Specifications = function ProductSpecifications({ children, product, ...restProps }) {
   return (
     <Specifications {...restProps}>
-      {product.specifications.map(specs => (
-        <table>
+      {product.specifications.map((specs, i) => (
+        <table key={i}>
           <tbody>
             {Object.entries(specs).map(([key, value], i) => (
               <tr key={i} className="productPage__tr">

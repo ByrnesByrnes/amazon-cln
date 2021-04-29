@@ -19,10 +19,10 @@ export function CheckoutContainer() {
           <StateContextConsumer>
             {([{ cart }]) => (
               cart.map((product, i) => (
-                <>
-                  <Checkout.Product key={i} product={product} />
+                <React.Fragment key={i}>
+                  <Checkout.Product product={product} />
                   <hr />
-                </>
+                </React.Fragment>
               ))
             )}
           </StateContextConsumer>

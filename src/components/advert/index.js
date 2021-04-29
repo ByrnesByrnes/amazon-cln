@@ -5,7 +5,7 @@ import {
 } from './styles/advert'
 
 export default function Advert({src, alt, ...restProps}) {
-  console.log(alt)
+  // console.log(alt)
   return (
     <Container {...restProps}>
       <Ad src={src} alt={alt} />

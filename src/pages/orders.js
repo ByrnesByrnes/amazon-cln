@@ -36,7 +36,7 @@ export default function Orders() {
       <Order>
         <Order.Title>Your Orders</Order.Title>
           {orders.map((order, i) => (
-            <OrderContainer  order={order} />
+            <OrderContainer key={i}  order={order} />
           ))}
       </Order>
     </div>
