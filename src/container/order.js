@@ -5,6 +5,7 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import { Order, Product } from '../components'
 
 export function OrderContainer({ order }) {
+  let date = new Date()
 
   return (
     <Order.Frame key={order.data.created}>
@@ -40,7 +41,7 @@ export function OrderContainer({ order }) {
       {/* Body with Product */}
       <Order.Group>
         <Order.Group>
-          <Order.Subtitle>Delivered Oct 9, 2020</Order.Subtitle>
+          <Order.Subtitle>Delivered within the next 7 business</Order.Subtitle>
         </Order.Group>
 
         {/* PRODUCT SECTION */}
@@ -58,7 +59,7 @@ export function OrderContainer({ order }) {
                   <Product.Text>
                     Sold by: <Order.Link to="#">{product.brand}</Order.Link>
                   </Product.Text>
-                  <Order.Text>Return eligible through Jan 31, 2021</Order.Text>
+                  <Order.Text>Return eligible within 30 days of order date.</Order.Text>
                   <Order.Price>CDN$ {product.price}</Order.Price>
                   <Product.AddCart product={product} ><RepeatIcon />Buy it Again</Product.AddCart>
                 </Product.Group>

@@ -17,7 +17,7 @@ export default function Payment({ cart, dispatch, user }) {
   const [succeeded, setSucceeded] = useState(false)
   const [clientSecret, setClientSecret] = useState('')
   const [error, setError] = useState('')
-  console.log(user.uid, "unknown")
+  // console.log(user.uid, "unknown")
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
@@ -29,7 +29,7 @@ export default function Payment({ cart, dispatch, user }) {
 
     getClientSecret()
   }, [cart])
-  console.log('client Secret', clientSecret)
+  // console.log('client Secret', clientSecret)
 
   const handleSubmit = async event => {
     event.preventDefault()

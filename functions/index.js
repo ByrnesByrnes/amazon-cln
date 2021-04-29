@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.post('/payments/create', async (request, response) => {
   const total = request.query.total
-  console.log('Payment to Stripe: ', total)
+  // console.log('Payment to Stripe: ', total)
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
@@ -25,5 +25,3 @@ app.post('/payments/create', async (request, response) => {
 })
 
 exports.api = functions.https.onRequest(app)
-
-//http://127.0.0.1:5001/amzn-cln-ed1f8/us-central1/api

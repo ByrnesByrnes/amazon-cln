@@ -26,7 +26,6 @@ Subtotal.Calc = function SubtotalCalc({children ,...restProps}) {
             <CurrencyFormat 
               renderText={value => (
                 <p>{children} ({cart.length} item{cart.length !== 1 && "s"}):
-                {console.log(getCartSubtotal(cart))}
                   <strong>CDN$ {value}</strong>
                 </p>
               )}
